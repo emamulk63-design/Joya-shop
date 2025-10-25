@@ -26,7 +26,69 @@
   .copy-input{background:#071b2b;padding:10px;border-radius:6px;border:1px dashed #27475d;color:#fff}
   .success{background:#0b3b24;padding:12px;border-radius:8px;color:#bff0c9;margin-top:12px;display:none}
   .back{display:inline-block;margin-top:12px;color:#9aa8b4;text-decoration:underline;cursor:pointer}
-  @media(max-width:600px){ .top{flex-direction:column;align-items:center}.top img{width:160px;height:auto} }
+  
+  /* Popup Styles */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .popup-content {
+    background: #0f1a2b;
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #00d8ff;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .popup-icon {
+    font-size: 3rem;
+    color: #00d8ff;
+    margin-bottom: 15px;
+  }
+  .popup-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #00d8ff;
+  }
+  .popup-message {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #c7d2da;
+    margin-bottom: 20px;
+  }
+  .popup-close {
+    background: #00d8ff;
+    color: #08202a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .popup-close:hover {
+    background: #00c4e8;
+  }
+
+  @media(max-width:600px){ 
+    .top{flex-direction:column;align-items:center}
+    .top img{width:160px;height:auto} 
+    .popup-content {
+      padding: 20px;
+      margin: 20px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -94,6 +156,18 @@
     </div>
   </div>
 
+  <!-- Success Popup -->
+  <div class="popup-overlay" id="success-popup">
+    <div class="popup-content">
+      <div class="popup-icon">✓</div>
+      <div class="popup-title">অর্ডার সফল!</div>
+      <div class="popup-message">
+        আপনার অর্ডারটি সফল হয়েছে — কিছু সময়ের মধ্যে আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবে। ধন্যবাদ!
+      </div>
+      <button class="popup-close" onclick="closePopup()">ঠিক আছে</button>
+    </div>
+  </div>
+
 <script>
   // read query params
   const params = new URLSearchParams(window.location.search);
@@ -104,6 +178,22 @@
   document.getElementById('prod-name').textContent = prodName;
   document.getElementById('prod-price').textContent = '৳ ' + prodPrice;
   if(prodImg) document.getElementById('prod-img').src = prodImg;
+
+  // Popup functions
+  function showPopup() {
+    document.getElementById('success-popup').style.display = 'flex';
+  }
+
+  function closePopup() {
+    document.getElementById('success-popup').style.display = 'none';
+  }
+
+  // Close popup when clicking outside
+  document.getElementById('success-popup').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closePopup();
+    }
+  });
 
   // payment toggle
   const codRadio = document.getElementById('cod');
@@ -127,10 +217,8 @@
       alert('অনুগ্রহ করে নাম, ফোন এবং ঠিকানা পূরণ করুন।');
       return;
     }
-    // simulate order success
-    document.getElementById('success-msg').style.display='block';
-    document.getElementById('success-msg').textContent = 'আপনার অর্ডারটি সফল হয়েছে — কিছু সময়ের মধ্যে আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবে। ধন্যবাদ!';
-    // optionally clear form or disable
+    // Show popup instead of inline message
+    showPopup();
     document.getElementById('confirm-cod').disabled = true;
   });
 
@@ -157,9 +245,8 @@
 
   // Advance confirm
   document.getElementById('advance-confirm').addEventListener('click', function(){
-    // you might validate a txn id in real app
-    document.getElementById('success-msg').style.display='block';
-    document.getElementById('success-msg').textContent = 'আপনার অগ্রিম পেমেন্ট নোট করা হয়েছে — আমরা দ্রুত যাচাই করে আপনাকে যোগাযোগ করবো। ধন্যবাদ!';
+    // Show popup for advance payment too
+    showPopup();
     document.getElementById('advance-confirm').disabled = true;
   });
 
