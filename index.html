@@ -14,7 +14,6 @@ body{background:#0f1a2b;color:#fff;min-height:100vh;padding:20px}
 .banner img{width:200px;height:auto;object-fit:contain;border:2px solid #00d8ff;border-radius:8px;background:#1a2a3f}
 .shop-name{font-size:2.5rem;font-weight:800;color:#ffffff;text-shadow:0 0 10px rgba(255,255,255,0.5),0 0 20px rgba(255,255,255,0.3);margin-bottom:6px;animation:glowText 2s ease-in-out infinite alternate;position:relative}
 @keyframes glowText{0%{text-shadow:0 0 10px rgba(255,255,255,0.5),0 0 20px rgba(255,255,255,0.3);transform:scale(1)}100%{text-shadow:0 0 15px rgba(255,255,255,0.8),0 0 25px rgba(255,255,255,0.5),0 0 35px rgba(255,255,255,0.3);transform:scale(1.05)}}
-@keyframes floatText{0%{transform:translateY(0px)}50%{transform:translateY(-3px)}100%{transform:translateY(0px)}}
 .shop-name::before{content:"✨";position:absolute;left:-30px;top:50%;transform:translateY(-50%);animation:sparkle 3s infinite}
 .shop-name::after{content:"✨";position:absolute;right:-30px;top:50%;transform:translateY(-50%);animation:sparkle 3s infinite 1.5s}
 @keyframes sparkle{0%,100%{opacity:0;transform:translateY(-50%) scale(0.5)}50%{opacity:1;transform:translateY(-50%) scale(1)}}
@@ -75,6 +74,7 @@ body{background:#0f1a2b;color:#fff;min-height:100vh;padding:20px}
     <button class="cat-btn" onclick="filterCategory('saree')">শাড়ি</button>
     <button class="cat-btn" onclick="filterCategory('condom')">প্রিমিয়াম কনডম</button>
     <button class="cat-btn" onclick="filterCategory('joya')">জয়া প্রডাক্ট</button>
+    <button class="cat-btn" onclick="openAbout()">আমাদের সম্পর্কে</button>
   </div>
 
   <!-- Product Grid -->
@@ -89,13 +89,11 @@ const products = [
   {id:1,name:"প্রিমিয়াম সিল্ক ব্রা",price:550,old:964,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product1.jpg",category:"bra"},
   {id:2,name:"জয়া প্রিমিয়াম ব্রা সেট",price:390,old:698,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product4.jpg",category:"bra"},
   {id:3,name:"ডেইলি ব্লিস ব্রা সেট",price:1250,old:2232,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product7.jpg",category:"bra"},
-
   // প্যান্টি
   {id:4,name:"এলিট কোমফর্ট প্যান্টি",price:2360,old:4214,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product2.jpg",category:"panty"},
   {id:5,name:"সিল্ক টাচ প্যান্টি",price:1200,old:2143,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product3.jpg",category:"panty"},
   {id:6,name:"রোজ পেটাল প্যান্টি",price:449,old:801,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product5.jpg",category:"panty"},
   {id:7,name:"সফট হুগ প্যান্টি",price:590,old:1054,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product6.jpg",category:"panty"},
-
   // শাড়ি
   {id:101,name:"সিল্কি শাড়ি",price:3000,old:4550,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari1.jpg",category:"saree"},
   {id:102,name:"কাসাভু শাড়ি - কেরালা",price:3900,old:7650,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari2.jpg",category:"saree"},
@@ -105,7 +103,6 @@ const products = [
   {id:106,name:"মাল্টি কালার শাড়ি",price:4800,old:6000,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari6.jpg",category:"saree"},
   {id:107,name:"ইলিগ্যান্ট শাড়ি",price:7200,old:8600,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari7.jpg",category:"saree"},
   {id:108,name:"ফ্লোরাল শাড়ি",price:3900,old:5200,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari8.jpg",category:"saree"},
-
   // প্রিমিয়াম কনডম
   {id:201,name:"লাভসিল",price:150,old:300,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom1.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
   {id:202,name:"সেক্সি নাইট",price:260,old:450,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom2.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
@@ -113,7 +110,6 @@ const products = [
   {id:204,name:"নাইট টাইম",price:200,old:380,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom4.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
   {id:205,name:"ম্যাজিক টাচ",price:220,old:450,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom5.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
   {id:206,name:"সুপার সেফ",price:50,old:270,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom6.png",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
-
   // জয়া প্রডাক্ট
   {id:301,name:"জয়া ম্যাজিক বডি লোশন",price:550,old:950,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joyaproduct1.jpg",category:"joya"},
   {id:302,name:"জয়া রিলাক্সিং অয়েল",price:890,old:1450,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joys%20product%202.jpg",category:"joya"},
@@ -162,6 +158,11 @@ function openOrder(id){
   const p = products.find(x=>x.id===id);
   const params = new URLSearchParams({id:p.id,name:p.name,price:p.price,img:p.img});
   window.open('order.html?' + params.toString(), '_blank');
+}
+
+// open about page
+function openAbout(){
+  window.open('about.html', '_blank');
 }
 </script>
 </body>
