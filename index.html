@@ -5,221 +5,164 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Joya Shop — প্রোডাক্ট লিস্ট</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif}
-  body{background:#0f1a2b;color:#fff;min-height:100vh;padding:20px}
-  .container{max-width:1200px;margin:0 auto}
-  .banner{display:flex;gap:20px;align-items:center;background:#1a2a3f;padding:16px;border-radius:10px;border:1px solid #2a3a4f}
-  .banner img{width:260px;height:auto;object-fit:contain;border:2px solid #00d8ff;border-radius:8px;background:#1a2a3f}
-  .shop-name{font-size:2rem;font-weight:700}
-  .shop-sub{color:#8a9ba8;margin-top:6px}
-  .discount-highlight{color:#00d8ff;font-weight:700;font-size:1.1rem;margin-top:4px;text-shadow:0 0 10px rgba(0,216,255,0.5)}
-  .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}
-  .product-card{background:#152238;padding:14px;border-radius:10px;border:1px solid #2a3a4f;display:flex;flex-direction:column;gap:10px}
-  .product-image{height:180px;border-radius:8px;overflow:hidden;background:#213048;display:flex;align-items:center;justify-content:center}
-  .product-image img{width:100%;height:100%;object-fit:cover}
-  .product-name{font-weight:700;font-size:1.1rem}
-  .product-features{color:#9aa8b4;font-size:0.92rem}
-  .price-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
-  .product-price{color:#00d8ff;font-weight:700}
-  .old-price{color:#b0b8c0;text-decoration:line-through;font-size:0.9rem}
-  .hot-badge{background:#ff4757;color:#fff;padding:6px 8px;border-radius:6px;font-weight:700;font-size:0.85rem}
-  .buy-button{background:#00d8ff;color:#08202a;border:none;padding:10px;border-radius:8px;font-weight:700;cursor:pointer;width:100%}
-  .buy-button:hover{opacity:0.95}
-  .sizes{color:#9aa8b4;font-size:0.9rem;margin-top:6px}
-  .note{color:#9aa8b4;font-size:0.9rem;margin-top:12px;text-align:center}
-  @media(max-width:700px){ .banner{flex-direction:column;text-align:center}.banner img{width:200px} }
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif}
+body{background:#0f1a2b;color:#fff;min-height:100vh;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+
+/* Banner */
+.banner{display:flex;gap:20px;align-items:center;background:#1a2a3f;padding:16px;border-radius:10px;border:1px solid #2a3a4f;flex-wrap:wrap;justify-content:center}
+.banner img{width:200px;height:auto;object-fit:contain;border:2px solid #00d8ff;border-radius:8px;background:#1a2a3f}
+.shop-name{font-size:2.5rem;font-weight:800;background:linear-gradient(90deg,#ff0000,#ff1493,#ff69b4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:2px 2px 8px rgba(255,0,0,0.3);margin-bottom:6px;animation:glowText 2s ease-in-out infinite alternate;position:relative}
+@keyframes glowText{0%{text-shadow:0 0 10px rgba(255,0,0,0.5),0 0 20px rgba(255,20,147,0.4),0 0 30px rgba(255,105,180,0.3);transform:scale(1)}100%{text-shadow:0 0 15px rgba(255,0,0,0.8),0 0 25px rgba(255,20,147,0.6),0 0 35px rgba(255,105,180,0.5);transform:scale(1.05)}}
+@keyframes floatText{0%{transform:translateY(0px) rotate(-1deg)}50%{transform:translateY(-3px) rotate(1deg)}100%{transform:translateY(0px) rotate(-1deg)}}
+.shop-name::before{content:"✨";position:absolute;left:-30px;top:50%;transform:translateY(-50%);animation:sparkle 3s infinite}
+.shop-name::after{content:"✨";position:absolute;right:-30px;top:50%;transform:translateY(-50%);animation:sparkle 3s infinite 1.5s}
+@keyframes sparkle{0%,100%{opacity:0;transform:translateY(-50%) scale(0.5)}50%{opacity:1;transform:translateY(-50%) scale(1)}}
+.shop-sub{color:#8a9ba8;font-size:1rem;margin-bottom:8px}
+.discount-highlight{color:#00d8ff;font-weight:700;font-size:1.1rem;margin-bottom:16px;text-shadow:0 0 10px rgba(0,216,255,0.5)}
+
+/* Category Bar */
+.category-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.cat-btn{background:#1a2a3f;border:1px solid #2a3a4f;color:#fff;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600;transition:0.3s;font-size:0.95rem}
+.cat-btn:hover{background:#00d8ff;color:#08202a;transform:scale(1.05)}
+.cat-btn.active{background:#00d8ff;color:#08202a;transform:scale(1.05)}
+
+/* Products */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:10px}
+.product-card{background:#152238;padding:14px;border-radius:10px;border:1px solid #2a3a4f;display:flex;flex-direction:column;gap:10px;transition:0.3s}
+.product-card:hover{transform:translateY(-5px);box-shadow:0 4px 20px rgba(0,216,255,0.3)}
+.product-image{height:180px;border-radius:8px;overflow:hidden;background:#213048;display:flex;align-items:center;justify-content:center}
+.product-image img{width:100%;height:100%;object-fit:cover}
+.product-name{font-weight:700;font-size:1.1rem}
+.product-features{color:#9aa8b4;font-size:0.92rem}
+.price-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.product-price{color:#00d8ff;font-weight:700}
+.old-price{color:#b0b8c0;text-decoration:line-through;font-size:0.9rem}
+.hot-badge{background:#ff4757;color:#fff;padding:6px 8px;border-radius:6px;font-weight:700;font-size:0.85rem}
+.buy-button{background:#00d8ff;color:#08202a;border:none;padding:10px;border-radius:8px;font-weight:700;cursor:pointer;width:100%;transition:0.2s}
+.buy-button:hover{opacity:0.95;transform:scale(1.02)}
+.sizes{color:#9aa8b4;font-size:0.9rem;margin-top:6px}
+.description{color:#9aa8b4;font-size:0.88rem;margin-top:6px;font-style:italic}
+.note{color:#9aa8b4;font-size:0.9rem;margin-top:12px;text-align:center}
+
+@media(max-width:700px){
+  .banner{flex-direction:column;text-align:center}
+  .banner img{width:180px}
+  .cat-btn{padding:8px 12px;font-size:0.85rem}
+  .shop-name{font-size:2rem}
+  .shop-name::before,.shop-name::after{display:none}
+}
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="banner">
-      <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/Picsart_25-10-25_21-39-48-437.jpg" alt="জিয়া শপ">
-      <div>
-        <div class="shop-name">👙জয়া শপ👙</div>
-        <div class="shop-sub">আপনার বিশ্বস্ত শপিং পার্টনার — সব প্রোডাক্টে</div>
-        <div class="discount-highlight">🎉 ৪৪% ছাড় চলছে 🎉</div>
-      </div>
+<div class="container">
+
+  <!-- Banner -->
+  <div class="banner">
+    <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/Picsart_25-10-25_21-39-48-437.jpg" alt="জয়া শপ">
+    <div style="text-align:center">
+      <div class="shop-name">👙জয়া–শপ👙</div>
+      <div class="shop-sub">আপনার বিশ্বস্ত শপিং পার্টনার — সব প্রোডাক্টে</div>
+      <div class="discount-highlight">🎉 ৪৪% ছাড় চলছে 🎉</div>
     </div>
-
-    <div class="products-grid">
-
-      <!-- Product 1 -->
-      <div class="product-card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="product-name">প্রিমিয়াম সিল্ক ব্রা</div>
-          <div class="hot-badge">44% OFF</div>
-        </div>
-        <div class="product-image">
-          <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product1.jpg" alt="প্রিমিয়াম সিল্ক ব্রা">
-        </div>
-        <div class="product-features">
-          M (মিডিয়াম) - কোমর ৩০-৩২ ইঞ্চি<br>
-          L (লার্জ) - কোমর ৩৩-৩৫ ইঞ্চি
-        </div>
-        <div class="price-row">
-          <div>
-            <div class="product-price">৳ ৫৫০</div>
-            <div class="old-price">৳ ৯৬৪</div>
-          </div>
-        </div>
-        <button class="buy-button" onclick="openOrder(1)">অর্ডার করুন</button>
-      </div>
-
-      <!-- Product 2 -->
-      <div class="product-card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="product-name">এলিট কোমফর্ট প্যান্টি</div>
-          <div class="hot-badge">44% OFF</div>
-        </div>
-        <div class="product-image">
-          <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product2.jpg" alt="এলিট কোমফর্ট প্যান্টি">
-        </div>
-        <div class="product-features sizes">
-          সাইজ: XS (২৪-২৬), S (২৭-২৯), M (৩০-৩২)
-        </div>
-        <div class="price-row">
-          <div>
-            <div class="product-price">৳ ২,৩৬০</div>
-            <div class="old-price">৳ ৪,২১৪</div>
-          </div>
-        </div>
-        <button class="buy-button" onclick="openOrder(2)">অর্ডার করুন</button>
-      </div>
-
-      <!-- Product 3 -->
-      <div class="product-card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="product-name">সিল্ক টাচ প্যান্টি</div>
-          <div class="hot-badge">44% OFF</div>
-        </div>
-        <div class="product-image">
-          <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product3.jpg" alt="সিল্ক টাচ প্যান্টি">
-        </div>
-        <div class="product-features sizes">
-          সাইজ: XS (২৪-২৬), S (২৭-২৯), M (৩০-৩২)
-        </div>
-        <div class="price-row">
-          <div>
-            <div class="product-price">৳ ১,২০০</div>
-            <div class="old-price">৳ ২,১৪৩</div>
-          </div>
-        </div>
-        <button class="buy-button" onclick="openOrder(3)">অর্ডার করুন</button>
-      </div>
-
-      <!-- Product 4 -->
-      <div class="product-card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="product-name">জয়া প্রিমিয়াম ব্রা সেট</div>
-          <div class="hot-badge">44% OFF</div>
-        </div>
-        <div class="product-image">
-          <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product4.jpg" alt="জয়া প্রিমিয়াম ব্রা সেট">
-        </div>
-        <div class="product-features sizes">
-          সাইজ: XS (২৪-২৬), S (২৭-২৯), M (৩০-৩২)
-        </div>
-        <div class="price-row">
-          <div>
-            <div class="product-price">৳ ৩৯০</div>
-            <div class="old-price">৳ ৬৯৮</div>
-          </div>
-        </div>
-        <button class="buy-button" onclick="openOrder(4)">অর্ডার করুন</button>
-      </div>
-
-      <!-- Product 5 -->
-      <div class="product-card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="product-name">রোজ পেটাল প্যান্টি</div>
-          <div class="hot-badge">44% OFF</div>
-        </div>
-        <div class="product-image">
-          <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product5.jpg" alt="রোজ পেটাল প্যান্টی">
-        </div>
-        <div class="product-features sizes">
-          সাইজ: XS (২৪-২৬), S (২৭-২৯), M (৩০-৩২)
-        </div>
-        <div class="price-row">
-          <div>
-            <div class="product-price">৳ ৪৪৯</div>
-            <div class="old-price">৳ ৮০১</div>
-          </div>
-        </div>
-        <button class="buy-button" onclick="openOrder(5)">অর্ডার করুন</button>
-      </div>
-
-      <!-- Product 6 -->
-      <div class="product-card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="product-name">সফট হুগ প্যান্টি</div>
-          <div class="hot-badge">44% OFF</div>
-        </div>
-        <div class="product-image">
-          <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product6.jpg" alt="সফট হুগ প্যান্টি">
-        </div>
-        <div class="product-features sizes">
-          সাইজ: XS (২৪-২৬), S (২৭-২৯), M (৩০-৩২)
-        </div>
-        <div class="price-row">
-          <div>
-            <div class="product-price">৳ ৫৯০</div>
-            <div class="old-price">৳ ১,০৫৪</div>
-          </div>
-        </div>
-        <button class="buy-button" onclick="openOrder(6)">অর্ডার করুন</button>
-      </div>
-
-      <!-- Product 7 (added) -->
-      <div class="product-card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="product-name">ডেইলি ব্লিস ব্রা সেট</div>
-          <div class="hot-badge">44% OFF</div>
-        </div>
-        <div class="product-image">
-          <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product7.jpg" alt="ডেইলি ব্লিস ব্রা সেট">
-        </div>
-        <div class="product-features sizes">
-          সাইজ: XS (২৪-২৬), S (২৭-২৯), M (৩০-৩২)
-        </div>
-        <div class="price-row">
-          <div>
-            <div class="product-price">৳ ১,২৫০</div>
-            <div class="old-price">৳ ২,২৩২</div>
-          </div>
-        </div>
-        <button class="buy-button" onclick="openOrder(7)">অর্ডার করুন</button>
-      </div>
-
-    </div>
-
-    <div class="note">✦ অর্ডার করতে “অর্ডার করুন” এ ক্লিক করলে নতুন পেজে (Order page) নিয়ে যাবে — সেখানে পেমেন্ট সিলেক্ট করে অর্ডার সম্পন্ন করবেন।</div>
   </div>
 
-<script>
-  // product data used to pass to order page
-  const products = {
-    1: {id:1,name:"প্রিমিয়াম সিল্ক ব্রা",price:550,img:"product1.jpg"},
-    2: {id:2,name:"এলিট কোমফর্ট প্যান্টি",price:2360,img:"product2.jpg"},
-    3: {id:3,name:"সিল্ক টাচ প্যান্টি",price:1200,img:"product3.jpg"},
-    4: {id:4,name:"জয়া প্রিমিয়াম ব্রা সেট",price:390,img:"product4.jpg"},
-    5: {id:5,name:"রোজ পেটাল প্যান্টি",price:449,img:"product5.jpg"},
-    6: {id:6,name:"সফট হুগ প্যান্টি",price:590,img:"product6.jpg"},
-    7: {id:7,name:"ডেইলি ব্লিস ব্রা সেট",price:1250,img:"product7.jpg"}
-  };
+  <!-- Category Buttons -->
+  <div class="category-bar">
+    <button class="cat-btn active" onclick="filterCategory('all')">সব</button>
+    <button class="cat-btn" onclick="filterCategory('panty')">প্যান্টি</button>
+    <button class="cat-btn" onclick="filterCategory('bra')">ব্রা</button>
+    <button class="cat-btn" onclick="filterCategory('saree')">শাড়ি</button>
+    <button class="cat-btn" onclick="filterCategory('condom')">প্রিমিয়াম কনডম</button>
+    <button class="cat-btn" onclick="filterCategory('joya')">জয়া প্রডাক্ট</button>
+  </div>
 
-  function openOrder(id){
-    const p = products[id];
-    // pass product info via query params; images assumed in same raw GitHub path
-    const params = new URLSearchParams({
-      id: p.id,
-      name: p.name,
-      price: p.price,
-      img: "https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/" + p.img
-    });
-    // open new page (same tab or new tab?) - user asked for separate page; open in new tab
-    window.open('order.html?' + params.toString(), '_blank');
-  }
+  <!-- Product Grid -->
+  <div class="products-grid" id="productGrid"></div>
+
+  <div class="note">✦ অর্ডার করতে "অর্ডার করুন" এ ক্লিক করলে নতুন পেজে (Order page) নিয়ে যাবে — সেখানে পেমেন্ট সিলেক্ট করে অর্ডার সম্পন্ন করবেন।</div>
+</div>
+
+<script>
+const products = [
+  // ব্রা
+  {id:1,name:"প্রিমিয়াম সিল্ক ব্রা",price:550,old:964,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product1.jpg",category:"bra"},
+  {id:2,name:"জয়া প্রিমিয়াম ব্রা সেট",price:390,old:698,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product4.jpg",category:"bra"},
+  {id:3,name:"ডেইলি ব্লিস ব্রা সেট",price:1250,old:2232,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product7.jpg",category:"bra"},
+
+  // প্যান্টি
+  {id:4,name:"এলিট কোমফর্ট প্যান্টি",price:2360,old:4214,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product2.jpg",category:"panty"},
+  {id:5,name:"সিল্ক টাচ প্যান্টি",price:1200,old:2143,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product3.jpg",category:"panty"},
+  {id:6,name:"রোজ পেটাল প্যান্টি",price:449,old:801,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product5.jpg",category:"panty"},
+  {id:7,name:"সফট হুগ প্যান্টি",price:590,old:1054,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product6.jpg",category:"panty"},
+
+  // শাড়ি
+  {id:101,name:"সিল্কি শাড়ি",price:3000,old:4550,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari1.jpg",category:"saree"},
+  {id:102,name:"কাসাভু শাড়ি - কেরালা",price:3900,old:7650,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari2.jpg",category:"saree"},
+  {id:103,name:"কাঞ্চিপুরম সিল্ক",price:19068,old:38136,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari3.jpg",category:"saree"},
+  {id:104,name:"গোল্ডেন গ্রেস শাড়ি",price:7200,old:9000,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari4.jpg",category:"saree"},
+  {id:105,name:"রোজব্লস শাড়ি",price:6500,old:8100,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari5.jpg",category:"saree"},
+  {id:106,name:"মাল্টি কালার শাড়ি",price:4800,old:6000,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari6.jpg",category:"saree"},
+  {id:107,name:"ইলিগ্যান্ট শাড়ি",price:7200,old:8600,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari7.jpg",category:"saree"},
+  {id:108,name:"ফ্লোরাল শাড়ি",price:3900,old:5200,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari8.jpg",category:"saree"},
+
+  // প্রিমিয়াম কনডম
+  {id:201,name:"লাভসিল",price:150,old:300,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom1.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
+  {id:202,name:"সেক্সি নাইট",price:260,old:450,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom2.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
+  {id:203,name:"সেফ লাভ",price:180,old:400,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom3.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
+  {id:204,name:"নাইট টাইম",price:200,old:380,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom4.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
+  {id:205,name:"ম্যাজিক টাচ",price:220,old:450,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom5.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
+  {id:206,name:"সুপার সেফ",price:50,old:270,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom6.png",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
+
+  // জয়া প্রডাক্ট
+  {id:301,name:"জয়া ম্যাজিক বডি লোশন",price:550,old:950,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joyaproduct1.jpg",category:"joya"},
+  {id:302,name:"জয়া রিলাক্সিং অয়েল",price:890,old:1450,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joys%20product%202.jpg",category:"joya"},
+  {id:303,name:"জয়া আরোমা ক্যান্ডেল",price:650,old:1200,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joyaproduct3.jpg",category:"joya"},
+  {id:304,name:"জয়া প্রিমিয়াম কিট",price:1250,old:2300,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joyaproduct5.jpg",category:"joya"}
+];
+
+const productGrid = document.getElementById('productGrid');
+
+function renderProducts(category){
+  productGrid.innerHTML = '';
+  let filtered = category==='all'?products:products.filter(p=>p.category===category);
+  filtered.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="product-name">${p.name}</div>
+        ${p.old?'<div class="hot-badge">'+Math.round((p.old-p.price)/p.old*100)+'% OFF</div>':''}
+      </div>
+      <div class="product-image"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="product-features">${p.sizes||''}</div>
+      ${p.description?'<div class="description">'+p.description+'</div>':''}
+      <div class="price-row">
+        <div>
+          <div class="product-price">৳ ${p.price}</div>
+          ${p.old?'<div class="old-price">৳ '+p.old+'</div>':''}
+        </div>
+      </div>
+      <button class="buy-button" onclick="openOrder(${p.id})">অর্ডার করুন</button>
+    `;
+    productGrid.appendChild(card);
+  });
+}
+
+renderProducts('all');
+
+function filterCategory(cat){
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderProducts(cat);
+}
+
+// open order page
+function openOrder(id){
+  const p = products.find(x=>x.id===id);
+  const params = new URLSearchParams({id:p.id,name:p.name,price:p.price,img:p.img});
+  window.open('order.html?' + params.toString(), '_blank');
+}
 </script>
 </body>
 </html>
