@@ -9,19 +9,74 @@
 body{background:#0f1a2b;color:#fff;min-height:100vh;padding:20px}
 .container{max-width:1200px;margin:0 auto}
 
-/* Banner */
-.banner{display:flex;gap:20px;align-items:center;background:#1a2a3f;padding:16px;border-radius:10px;border:1px solid #2a3a4f;flex-wrap:wrap;justify-content:center}
-.banner img{width:200px;height:auto;object-fit:contain;border:2px solid #00d8ff;border-radius:8px;background:#1a2a3f}
-.shop-name{font-size:2.5rem;font-weight:800;color:#ffffff;text-shadow:0 0 10px rgba(255,255,255,0.5),0 0 20px rgba(255,255,255,0.3);margin-bottom:6px;animation:glowText 2s ease-in-out infinite alternate;position:relative}
-@keyframes glowText{0%{text-shadow:0 0 10px rgba(255,255,255,0.5),0 0 20px rgba(255,255,255,0.3);transform:scale(1)}100%{text-shadow:0 0 15px rgba(255,255,255,0.8),0 0 25px rgba(255,255,255,0.5),0 0 35px rgba(255,255,255,0.3);transform:scale(1.05)}}
-.shop-name::before{content:"✨";position:absolute;left:-30px;top:50%;transform:translateY(-50%);animation:sparkle 3s infinite}
-.shop-name::after{content:"✨";position:absolute;right:-30px;top:50%;transform:translateY(-50%);animation:sparkle 3s infinite 1.5s}
-@keyframes sparkle{0%,100%{opacity:0;transform:translateY(-50%) scale(0.5)}50%{opacity:1;transform:translateY(-50%) scale(1)}}
-.shop-sub{color:#8a9ba8;font-size:1rem;margin-bottom:8px}
-.discount-highlight{color:#00d8ff;font-weight:700;font-size:1.1rem;margin-bottom:16px;text-shadow:0 0 10px rgba(0,216,255,0.5)}
+/* Modern Animated Banner */
+.banner {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid #2a3a4f;
+  background: linear-gradient(135deg, #0f1a2b, #1a2a3f, #0f1a2b);
+  box-shadow: 0 0 30px rgba(0,216,255,0.2);
+  position: relative;
+  overflow: hidden;
+}
+.banner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(0,216,255,0.15), transparent 70%);
+  animation: rotateGlow 10s linear infinite;
+}
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.banner-img {
+  width: 230px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+  border: 2px solid #00d8ff;
+  background: #0f1a2b;
+  box-shadow: 0 0 20px rgba(0,216,255,0.4);
+  animation: imageGlow 3s ease-in-out infinite alternate;
+}
+@keyframes imageGlow {
+  from { box-shadow: 0 0 10px rgba(0,216,255,0.3); }
+  to { box-shadow: 0 0 25px rgba(0,216,255,0.6); }
+}
+.banner-text {
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.shop-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.3);
+  animation: glowText 2s ease-in-out infinite alternate;
+  position: relative;
+}
+@keyframes glowText {
+  0% { text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.3); transform: scale(1); }
+  100% { text-shadow: 0 0 15px rgba(255,255,255,0.8), 0 0 25px rgba(255,255,255,0.5); transform: scale(1.05); }
+}
+.shop-sub {color:#8a9ba8;font-size:1rem;margin-bottom:8px}
+.discount-highlight {color:#00d8ff;font-weight:700;font-size:1.1rem;margin-bottom:16px;text-shadow:0 0 10px rgba(0,216,255,0.5)}
 
 /* Category Bar */
-.category-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.category-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0}
 .cat-btn{background:#1a2a3f;border:1px solid #2a3a4f;color:#fff;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600;transition:0.3s;font-size:0.95rem}
 .cat-btn:hover{background:#00d8ff;color:#08202a;transform:scale(1.05)}
 .cat-btn.active{background:#00d8ff;color:#08202a;transform:scale(1.05)}
@@ -40,26 +95,23 @@ body{background:#0f1a2b;color:#fff;min-height:100vh;padding:20px}
 .hot-badge{background:#ff4757;color:#fff;padding:6px 8px;border-radius:6px;font-weight:700;font-size:0.85rem}
 .buy-button{background:#00d8ff;color:#08202a;border:none;padding:10px;border-radius:8px;font-weight:700;cursor:pointer;width:100%;transition:0.2s}
 .buy-button:hover{opacity:0.95;transform:scale(1.02)}
-.sizes{color:#9aa8b4;font-size:0.9rem;margin-top:6px}
 .description{color:#9aa8b4;font-size:0.88rem;margin-top:6px;font-style:italic}
 .note{color:#9aa8b4;font-size:0.9rem;margin-top:12px;text-align:center}
 
 @media(max-width:700px){
   .banner{flex-direction:column;text-align:center}
-  .banner img{width:180px}
-  .cat-btn{padding:8px 12px;font-size:0.85rem}
+  .banner-img{width:180px}
   .shop-name{font-size:2rem}
-  .shop-name::before,.shop-name::after{display:none}
 }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- Banner -->
+  <!-- Animated Banner -->
   <div class="banner">
-    <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/Picsart_25-10-25_21-39-48-437.jpg" alt="জয়া শপ">
-    <div style="text-align:center">
+    <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/baner2.png" alt="জয়া শপ" class="banner-img">
+    <div class="banner-text">
       <div class="shop-name">👙জয়া–শপ👙</div>
       <div class="shop-sub">আপনার বিশ্বস্ত শপিং পার্টনার — সব প্রোডাক্টে</div>
       <div class="discount-highlight">🎉 ৪৪% ছাড় চলছে 🎉</div>
@@ -79,22 +131,19 @@ body{background:#0f1a2b;color:#fff;min-height:100vh;padding:20px}
 
   <!-- Product Grid -->
   <div class="products-grid" id="productGrid"></div>
+  <div class="note">✦ অর্ডার করতে "অর্ডার করুন" এ ক্লিক করলে নতুন পেজে নিয়ে যাবে — সেখানে পেমেন্ট সিলেক্ট করে অর্ডার সম্পন্ন করবেন।</div>
 
-  <div class="note">✦ অর্ডার করতে "অর্ডার করুন" এ ক্লিক করলে নতুন পেজে (Order page) নিয়ে যাবে — সেখানে পেমেন্ট সিলেক্ট করে অর্ডার সম্পন্ন করবেন।</div>
 </div>
 
 <script>
 const products = [
-  // ব্রা
   {id:1,name:"প্রিমিয়াম সিল্ক ব্রা",price:550,old:964,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product1.jpg",category:"bra"},
   {id:2,name:"জয়া প্রিমিয়াম ব্রা সেট",price:390,old:698,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product4.jpg",category:"bra"},
   {id:3,name:"ডেইলি ব্লিস ব্রা সেট",price:1250,old:2232,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product7.jpg",category:"bra"},
-  // প্যান্টি
   {id:4,name:"এলিট কোমফর্ট প্যান্টি",price:2360,old:4214,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product2.jpg",category:"panty"},
   {id:5,name:"সিল্ক টাচ প্যান্টি",price:1200,old:2143,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product3.jpg",category:"panty"},
   {id:6,name:"রোজ পেটাল প্যান্টি",price:449,old:801,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product5.jpg",category:"panty"},
   {id:7,name:"সফট হুগ প্যান্টি",price:590,old:1054,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/product6.jpg",category:"panty"},
-  // শাড়ি
   {id:101,name:"সিল্কি শাড়ি",price:3000,old:4550,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari1.jpg",category:"saree"},
   {id:102,name:"কাসাভু শাড়ি - কেরালা",price:3900,old:7650,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari2.jpg",category:"saree"},
   {id:103,name:"কাঞ্চিপুরম সিল্ক",price:19068,old:38136,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari3.jpg",category:"saree"},
@@ -103,14 +152,12 @@ const products = [
   {id:106,name:"মাল্টি কালার শাড়ি",price:4800,old:6000,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari6.jpg",category:"saree"},
   {id:107,name:"ইলিগ্যান্ট শাড়ি",price:7200,old:8600,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari7.jpg",category:"saree"},
   {id:108,name:"ফ্লোরাল শাড়ি",price:3900,old:5200,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/sari8.jpg",category:"saree"},
-  // প্রিমিয়াম কনডম
   {id:201,name:"লাভসিল",price:150,old:300,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom1.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
   {id:202,name:"সেক্সি নাইট",price:260,old:450,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom2.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
   {id:203,name:"সেফ লাভ",price:180,old:400,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom3.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
   {id:204,name:"নাইট টাইম",price:200,old:380,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom4.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
   {id:205,name:"ম্যাজিক টাচ",price:220,old:450,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom5.jpg",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
   {id:206,name:"সুপার সেফ",price:50,old:270,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/condom6.png",category:"condom",description:"আপনার প্রিয়জন কে ইচ্ছা মতো ঠাপাতে চাইলে কনডম কিনুন জয়া শপ থেকে ফাটবেনা ১০০% গ্যারান্টি"},
-  // জয়া প্রডাক্ট
   {id:301,name:"জয়া ম্যাজিক বডি লোশন",price:550,old:950,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joyaproduct1.jpg",category:"joya"},
   {id:302,name:"জয়া রিলাক্সিং অয়েল",price:890,old:1450,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joys%20product%202.jpg",category:"joya"},
   {id:303,name:"জয়া আরোমা ক্যান্ডেল",price:650,old:1200,img:"https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joyaproduct3.jpg",category:"joya"},
@@ -153,14 +200,12 @@ function filterCategory(cat){
   renderProducts(cat);
 }
 
-// open order page
 function openOrder(id){
   const p = products.find(x=>x.id===id);
   const params = new URLSearchParams({id:p.id,name:p.name,price:p.price,img:p.img});
   window.open('order.html?' + params.toString(), '_blank');
 }
 
-// open about page
 function openAbout(){
   window.open('about.html', '_blank');
 }
