@@ -12,9 +12,9 @@ body{background:#0f1a2b;color:#fff;min-height:100vh;padding:20px}
 /* Banner */
 .banner{display:flex;gap:20px;align-items:center;background:#1a2a3f;padding:16px;border-radius:10px;border:1px solid #2a3a4f;flex-wrap:wrap;justify-content:center}
 .banner img{width:200px;height:auto;object-fit:contain;border:2px solid #00d8ff;border-radius:8px;background:#1a2a3f}
-.shop-name{font-size:2.5rem;font-weight:800;background:linear-gradient(90deg,#ff0000,#ff1493,#ff69b4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:2px 2px 8px rgba(255,0,0,0.3);margin-bottom:6px;animation:glowText 2s ease-in-out infinite alternate;position:relative}
-@keyframes glowText{0%{text-shadow:0 0 10px rgba(255,0,0,0.5),0 0 20px rgba(255,20,147,0.4),0 0 30px rgba(255,105,180,0.3);transform:scale(1)}100%{text-shadow:0 0 15px rgba(255,0,0,0.8),0 0 25px rgba(255,20,147,0.6),0 0 35px rgba(255,105,180,0.5);transform:scale(1.05)}}
-@keyframes floatText{0%{transform:translateY(0px) rotate(-1deg)}50%{transform:translateY(-3px) rotate(1deg)}100%{transform:translateY(0px) rotate(-1deg)}}
+.shop-name{font-size:2.5rem;font-weight:800;color:#ffffff;text-shadow:0 0 10px rgba(255,255,255,0.5),0 0 20px rgba(255,255,255,0.3);margin-bottom:6px;animation:glowText 2s ease-in-out infinite alternate;position:relative}
+@keyframes glowText{0%{text-shadow:0 0 10px rgba(255,255,255,0.5),0 0 20px rgba(255,255,255,0.3);transform:scale(1)}100%{text-shadow:0 0 15px rgba(255,255,255,0.8),0 0 25px rgba(255,255,255,0.5),0 0 35px rgba(255,255,255,0.3);transform:scale(1.05)}}
+@keyframes floatText{0%{transform:translateY(0px)}50%{transform:translateY(-3px)}100%{transform:translateY(0px)}}
 .shop-name::before{content:"✨";position:absolute;left:-30px;top:50%;transform:translateY(-50%);animation:sparkle 3s infinite}
 .shop-name::after{content:"✨";position:absolute;right:-30px;top:50%;transform:translateY(-50%);animation:sparkle 3s infinite 1.5s}
 @keyframes sparkle{0%,100%{opacity:0;transform:translateY(-50%) scale(0.5)}50%{opacity:1;transform:translateY(-50%) scale(1)}}
