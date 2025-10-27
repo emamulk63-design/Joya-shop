@@ -8,6 +8,7 @@
 body {font-family:Arial, sans-serif;background:#0f1a2b;color:#fff;padding:20px;min-height:100vh}
 .container {max-width:1000px;margin:0 auto}
 h1{text-align:center;margin-bottom:30px;color:#00d8ff;text-shadow:0 0 10px rgba(0,216,255,0.5);}
+h2{text-align:center;margin:40px 0 20px 0;color:#ff6b6b;text-shadow:0 0 10px rgba(255,107,107,0.5);}
 .profile-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .profile-card {background:#152238;padding:20px;border-radius:10px;border:1px solid #2a3a4f;display:flex;flex-direction:column;align-items:center;text-align:center;transition:0.3s}
 .profile-card:hover {transform:translateY(-5px);box-shadow:0 4px 20px rgba(0,216,255,0.3);}
@@ -15,10 +16,13 @@ h1{text-align:center;margin-bottom:30px;color:#00d8ff;text-shadow:0 0 10px rgba(
   width:180px;
   height:180px;
   object-fit:cover;
-  object-position:top center; /* মুখ উপরের দিকে ফোকাস করা হয়েছে */
+  object-position:top center;
   border-radius:50%;
   border:2px solid #00d8ff;
   margin-bottom:15px;
+}
+.staff-profile-card img {
+  border:2px solid #ff6b6b;
 }
 .profile-info {text-align:left;margin-top:10px;width:100%}
 .profile-info p {margin:4px 0;font-size:0.95rem;color:#9aa8b4}
@@ -32,6 +36,20 @@ h1{text-align:center;margin-bottom:30px;color:#00d8ff;text-shadow:0 0 10px rgba(
 <h1>আমাদের সম্পর্কে</h1>
 <div class="profile-grid">
 
+  <!-- আসিব চৌধুরী -->
+  <div class="profile-card">
+    <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/joya%20bio.jpg" alt="আসিব চৌধুরী">
+    <div class="profile-info">
+      <p><strong>নাম:</strong> আসিব চৌধুরী</p>
+      <p><strong>পদবি:</strong> Owner – Joya Shop & Joya Live Casino</p>
+      <p><strong>সম্মাননা:</strong> আন্তর্জাতিক স্বর্ণপদকপ্রাপ্ত ক্যাসিনো সম্রাট</p>
+      <p><strong>বিশেষ দক্ষতা:</strong> ডিজিটাল গেম ডেভেলপমেন্ট, অনলাইন ক্যাসিনো ম্যানেজমেন্ট, "মোটা গুদ" রিসার্চ স্পেশালিস্ট</p>
+      <p><strong>মোবাইল:</strong> <a href="tel:+8801870011902">+8801870011902</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/8801871112602" target="_blank">01871112602</a></p>
+      <p><strong>Facebook:</strong> <a href="https://www.facebook.com/share/19uLjm6aPc/" target="_blank">লিংক</a></p>
+    </div>
+  </div>
+
   <!-- হাবিব -->
   <div class="profile-card">
     <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/Habib.jpg" alt="হাবিব ফকির">
@@ -39,8 +57,8 @@ h1{text-align:center;margin-bottom:30px;color:#00d8ff;text-shadow:0 0 10px rgba(
       <p><strong>নাম:</strong> হাবিব ফকির</p>
       <p><strong>পেশা:</strong> কনডম এবং প্রটেকশন বিশেষজ্ঞ</p>
       <p><strong>যোগ্যতা:</strong> মেডিকেল সাপ্লাই বিশেষজ্ঞ (Certificate), সেক্স এডুকেশন ট্রেনিং</p>
-      <p><strong>মোবাইল:</strong> +8801818781145</p>
-      <p><strong>WhatsApp:</strong> +8801818781145</p>
+      <p><strong>মোবাইল:</strong> <a href="tel:+8801818781145">+8801818781145</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/8801818781145" target="_blank">+8801818781145</a></p>
       <p><strong>Facebook:</strong> <a href="https://www.facebook.com/jibon1236" target="_blank">লিংক</a></p>
     </div>
   </div>
@@ -52,8 +70,8 @@ h1{text-align:center;margin-bottom:30px;color:#00d8ff;text-shadow:0 0 10px rgba(
       <p><strong>নাম:</strong> রাতুল ফকির</p>
       <p><strong>পেশা:</strong> প্যান্টি স্পেশালিস্ট & ইন্টিমেট অ্যাপারেল কনসালট্যান্ট</p>
       <p><strong>যোগ্যতা:</strong> ফ্যাশন ডিজাইন (BFA), ইন্টিমেট অ্যাপারেল ট্রেনিং সার্টিফিকেট</p>
-      <p><strong>মোবাইল:</strong> 01633358560</p>
-      <p><strong>WhatsApp:</strong> 01633358560</p>
+      <p><strong>মোবাইল:</strong> <a href="tel:01633358560">01633358560</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/8801633358560" target="_blank">01633358560</a></p>
       <p><strong>Facebook:</strong> <a href="https://www.facebook.com/ratulfarabi077" target="_blank">লিংক</a></p>
     </div>
   </div>
@@ -65,13 +83,47 @@ h1{text-align:center;margin-bottom:30px;color:#00d8ff;text-shadow:0 0 10px rgba(
       <p><strong>নাম:</strong> সাব্বির রহমান লিওন</p>
       <p><strong>পেশা:</strong> ফ্যাশন ডিজাইনার এবং ব্রা স্পেশালিস্ট</p>
       <p><strong>যোগ্যতা:</strong> ফ্যাশন ডিজাইন (BFA), কাপড় ও বস্ত্র বিজ্ঞান (Textile Science Diploma)</p>
-      <p><strong>মোবাইল:</strong> 01617186197</p>
-      <p><strong>WhatsApp:</strong> 01617186197</p>
+      <p><strong>মোবাইল:</strong> <a href="tel:01617186197">01617186197</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/8801617186197" target="_blank">01617186197</a></p>
       <p><strong>Facebook:</strong> <a href="https://www.facebook.com/sabbir.rahaman.leon" target="_blank">লিংক</a></p>
     </div>
   </div>
 
 </div>
+
+<!-- চতুর্থ শ্রেণীর স্টাফ -->
+<h2>চতুর্থ শ্রেণীর স্টাফ</h2>
+<div class="profile-grid">
+
+  <!-- নাজমুল ইসলাম (আকবর) -->
+  <div class="profile-card staff-profile-card">
+    <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/nazmul121.jpg" alt="নাজমুল ইসলাম">
+    <div class="profile-info">
+      <p><strong>নাম:</strong> নাজমুল ইসলাম (আকবর)</p>
+      <p><strong>পদবি:</strong> বিশিষ্ট সমাজসেবক ও দেহ ব্যাবসায়ি</p>
+      <p><strong>দক্ষতা:</strong> Health Business Specialist</p>
+      <p><strong>বিবরণ:</strong> মানবসেবায় নিবেদিত এক অনন্য ব্যক্তিত্ব</p>
+      <p><strong>মোবাইল:</strong> <a href="tel:+8801866648647">+880 1866-648647</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/8801866648647" target="_blank">+880 1866-648647</a></p>
+      <p><strong>Facebook:</strong> <a href="https://www.facebook.com/rsnazmul.nazmul.3" target="_blank">লিংক</a></p>
+    </div>
+  </div>
+
+  <!-- লিমন মোল্লা -->
+  <div class="profile-card staff-profile-card">
+    <img src="https://raw.githubusercontent.com/emamulk63-design/Joya-shop/main/lemon12.jpg" alt="লিমন মোল্লা">
+    <div class="profile-info">
+      <p><strong>নাম:</strong> লিমন মোল্লা</p>
+      <p><strong>পদবি:</strong> বিভিন্ন ফার্মা কোম্পানির আস্থাভাজন প্রতিনিধি</p>
+      <p><strong>বিশেষজ্ঞতা:</strong> লাল ঔষধ ও প্রাকৃতিক মধু বিষয়ক বিশেষজ্ঞ</p>
+      <p><strong>মোবাইল:</strong> <a href="tel:01613684905">01613684905</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/8801613684905" target="_blank">01613684905</a></p>
+      <p><strong>Facebook:</strong> <a href="https://www.facebook.com/lemon.molla.1213986" target="_blank">লিংক</a></p>
+    </div>
+  </div>
+
+</div>
+
 <a href="index.html" class="back-btn">← পেছনে ফিরে যান</a>
 </div>
 </body>
