@@ -5,257 +5,180 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>অর্ডার পেজ — Joya Shop</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif}
-  body{background:#071022;color:#fff;min-height:100vh;padding:18px}
-  .wrap{max-width:800px;margin:0 auto;background:#0f1a2b;padding:18px;border-radius:10px;border:1px solid #243547}
-  .top{display:flex;gap:12px;align-items:center}
-  .top img{width:120px;height:120px;object-fit:contain;border-radius:8px;border:2px solid #00d8ff;background:#112233}
-  .title{font-size:1.4rem;font-weight:700}
-  .price{color:#00d8ff;font-weight:800;margin-top:6px}
-  .section{background:#112233;padding:12px;border-radius:8px;margin-top:14px;border:1px solid #243547}
-  label{display:block;font-size:0.95rem;margin-bottom:6px;color:#c7d2da}
-  input[type="text"],input[type="tel"],textarea,select{
-    width:100%;padding:10px;border-radius:6px;border:1px solid #2b3b4b;background:#081422;color:#fff
-  }
-  .actions{display:flex;gap:10px;margin-top:12px}
-  .btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-  .btn-primary{background:#00d8ff;color:#08202a}
-  .btn-outline{background:transparent;border:1px solid #2b3b4b;color:#c7d2da}
-  .note{color:#9aa8b4;font-size:0.95rem;margin-top:8px}
-  .copy-row{display:flex;gap:8px;align-items:center;margin-top:8px}
-  .copy-input{background:#071b2b;padding:10px;border-radius:6px;border:1px dashed #27475d;color:#fff}
-  .success{background:#0b3b24;padding:12px;border-radius:8px;color:#bff0c9;margin-top:12px;display:none}
-  .back{display:inline-block;margin-top:12px;color:#9aa8b4;text-decoration:underline;cursor:pointer}
-  
-  /* Popup Styles */
-  .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  .popup-content {
-    background: #0f1a2b;
-    padding: 30px;
-    border-radius: 12px;
-    border: 2px solid #00d8ff;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
-  .popup-icon {
-    font-size: 3rem;
-    color: #00d8ff;
-    margin-bottom: 15px;
-  }
-  .popup-title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #00d8ff;
-  }
-  .popup-message {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #c7d2da;
-    margin-bottom: 20px;
-  }
-  .popup-close {
-    background: #00d8ff;
-    color: #08202a;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  .popup-close:hover {
-    background: #00c4e8;
-  }
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif}
+body{background:#071022;color:#fff;min-height:100vh;padding:18px}
+.wrap{max-width:800px;margin:0 auto;background:#0f1a2b;padding:18px;border-radius:10px;border:1px solid #243547}
+.top{display:flex;gap:12px;align-items:center}
+.top img{width:120px;height:120px;object-fit:contain;border-radius:8px;border:2px solid #00d8ff;background:#112233}
+.title{font-size:1.4rem;font-weight:700}
+.price{color:#00d8ff;font-weight:800;margin-top:6px}
+.section{background:#112233;padding:12px;border-radius:8px;margin-top:14px;border:1px solid #243547}
+label{display:block;font-size:0.95rem;margin-bottom:6px;color:#c7d2da}
+input[type="text"],input[type="tel"],textarea,select{width:100%;padding:10px;border-radius:6px;border:1px solid #2b3b4b;background:#081422;color:#fff}
+.actions{display:flex;gap:10px;margin-top:12px}
+.btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+.btn-primary{background:#00d8ff;color:#08202a}
+.btn-outline{background:transparent;border:1px solid #2b3b4b;color:#c7d2da}
+.note{color:#9aa8b4;font-size:0.95rem;margin-top:8px}
+.copy-row{display:flex;gap:8px;align-items:center;margin-top:8px}
+.copy-input{background:#071b2b;padding:10px;border-radius:6px;border:1px dashed #27475d;color:#fff}
+.success{background:#0b3b24;padding:12px;border-radius:8px;color:#bff0c9;margin-top:12px;display:none}
+.back{display:inline-block;margin-top:12px;color:#9aa8b4;text-decoration:underline;cursor:pointer}
 
-  @media(max-width:600px){ 
-    .top{flex-direction:column;align-items:center}
-    .top img{width:160px;height:auto} 
-    .popup-content {
-      padding: 20px;
-      margin: 20px;
-    }
-  }
+/* Popup Styles */
+.popup-overlay{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.7);display: none;justify-content: center;align-items: center;z-index: 1000}
+.popup-content{background: #0f1a2b;padding: 30px;border-radius: 12px;border: 2px solid #00d8ff;max-width: 400px;width: 90%;text-align: center;box-shadow: 0 10px 30px rgba(0,0,0,0.5)}
+.popup-icon{font-size: 3rem;color: #00d8ff;margin-bottom: 15px}
+.popup-title{font-size: 1.4rem;font-weight: bold;margin-bottom: 15px;color: #00d8ff}
+.popup-message{font-size: 1rem;line-height: 1.5;color: #c7d2da;margin-bottom: 20px}
+.popup-close{background: #00d8ff;color: #08202a;border: none;padding: 10px 20px;border-radius: 8px;font-weight: bold;cursor:pointer;font-size:1rem}
+.popup-close:hover{background: #00c4e8}
+
+@media(max-width:600px){ 
+.top{flex-direction:column;align-items:center}
+.top img{width:160px;height:auto} 
+.popup-content{padding: 20px;margin: 20px;}
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="top">
-      <img id="prod-img" src="" alt="product">
-      <div>
-        <div id="prod-name" class="title">প্রোডাক্ট নাম</div>
-        <div id="prod-price" class="price">৳ 0000</div>
-        <div class="note">প্রোডাক্টের দাম ও ইমেজ চেক করে পেমেন্ট করুন।</div>
-      </div>
-    </div>
+<div class="wrap">
+<div class="top">
+<img id="prod-img" src="" alt="product">
+<div>
+<div id="prod-name" class="title">প্রোডাক্ট নাম</div>
+<div id="prod-price" class="price">৳ 0000</div>
+<div class="note">প্রোডাক্টের দাম ও ইমেজ চেক করে পেমেন্ট করুন।</div>
+</div>
+</div>
 
-    <div class="section">
-      <label>পছন্দের সাইজ নির্বাচন করুন</label>
-      <select id="size-select">
-        <option value="XS">XS (২৪-২৬)</option>
-        <option value="S">S (২৭-২৯)</option>
-        <option value="M">M (৩০-৩২)</option>
-      </select>
-    </div>
+<div class="section">
+<label>পছন্দের সাইজ নির্বাচন করুন</label>
+<select id="size-select">
+<option value="XS">XS (২৪-২৬)</option>
+<option value="S">S (২৭-২৯)</option>
+<option value="M">M (৩০-৩২)</option>
+</select>
+</div>
 
-    <div class="section">
-      <label>পেমেন্ট পদ্ধতি বেছে নিন</label>
-      <div>
-        <input type="radio" id="cod" name="pay" value="cod" checked> <label for="cod" style="display:inline;color:#c7d2da">ক্যাশ অন ডেলিভারি (Cash on Delivery)</label>
-      </div>
-      <div style="margin-top:8px">
-        <input type="radio" id="advance" name="pay" value="advance"> <label for="advance" style="display:inline;color:#c7d2da">এডভান্স পেমেন্ট (বিকাশ)</label>
-      </div>
+<div class="section">
+<label>পেমেন্ট পদ্ধতি বেছে নিন</label>
+<div>
+<input type="radio" id="cod" name="pay" value="cod" checked> <label for="cod" style="display:inline;color:#c7d2da">ক্যাশ অন ডেলিভারি (Cash on Delivery)</label>
+</div>
+<div style="margin-top:8px">
+<input type="radio" id="advance" name="pay" value="advance"> <label for="advance" style="display:inline;color:#c7d2da">এডভান্স পেমেন্ট (বিকাশ)</label>
+</div>
 
-      <!-- COD form -->
-      <div id="cod-form" style="margin-top:12px">
-        <label>আপনার নাম</label>
-        <input type="text" id="cust-name" placeholder="আপনার নাম লিখুন">
-        <label style="margin-top:8px">মোবাইল নম্বর</label>
-        <input type="tel" id="cust-phone" placeholder="01XXXXXXXXX">
-        <label style="margin-top:8px">ডেলিভারি ঠিকানা</label>
-        <textarea id="cust-address" placeholder="বাড়ি, রোড, এলাকা, জেলা" rows="3"></textarea>
-        <div class="actions">
-          <button id="confirm-cod" class="btn btn-primary">কনফার্ম অর্ডার (COD)</button>
-          <button id="cancel-cod" class="btn btn-outline" onclick="window.close()">ক্যন্সেল</button>
-        </div>
-      </div>
+<!-- COD form -->
+<div id="cod-form" style="margin-top:12px">
+<label>আপনার নাম</label>
+<input type="text" id="cust-name" placeholder="আপনার নাম লিখুন">
+<label style="margin-top:8px">মোবাইল নম্বর</label>
+<input type="tel" id="cust-phone" placeholder="01XXXXXXXXX">
+<label style="margin-top:8px">ডেলিভারি ঠিকানা</label>
+<textarea id="cust-address" placeholder="বাড়ি, রোড, এলাকা, জেলা" rows="3"></textarea>
+<div class="actions">
+<button id="confirm-cod" class="btn btn-primary">কনফার্ম অর্ডার (COD)</button>
+<button id="cancel-cod" class="btn btn-outline" onclick="window.close()">ক্যন্সেল</button>
+</div>
+</div>
 
-      <!-- Advance payment -->
-      <div id="advance-box" style="display:none;margin-top:12px">
-        <div style="font-weight:700">বিকাশ / পেমেন্ট ডিটেইলস</div>
-        <div class="copy-row">
-          <div class="copy-input" id="bkash-number">01870011902</div>
-          <button id="copy-btn" class="btn btn-primary">কপি</button>
-        </div>
-        <div class="note">Send money to the number above, then press "I SENT PAYMENT" to complete order.</div>
-        <div class="actions" style="margin-top:10px">
-          <button id="advance-confirm" class="btn btn-primary">I SENT PAYMENT</button>
-          <button id="advance-cancel" class="btn btn-outline" onclick="window.close()">ক্যন্সেল</button>
-        </div>
-      </div>
-    </div>
+<!-- Advance payment -->
+<div id="advance-box" style="display:none;margin-top:12px">
+<div style="font-weight:700">বিকাশ / পেমেন্ট ডিটেইলস</div>
+<div class="copy-row">
+<div class="copy-input" id="bkash-number">01870011902</div>
+<button id="copy-btn" class="btn btn-primary">কপি</button>
+</div>
+<div class="note">Send money to the number above, then press "I SENT PAYMENT" to complete order.</div>
+<div class="actions" style="margin-top:10px">
+<button id="advance-confirm" class="btn btn-primary">I SENT PAYMENT</button>
+<button id="advance-cancel" class="btn btn-outline" onclick="window.close()">ক্যন্সেল</button>
+</div>
+</div>
+</div>
 
-    <div id="success-msg" class="success"></div>
+<div id="success-msg" class="success"></div>
+<div style="text-align:right"><span class="back" onclick="goBack()">← Back to shop</span></div>
+</div>
 
-    <div style="text-align:right">
-      <span class="back" onclick="goBack()">← Back to shop</span>
-    </div>
-  </div>
-
-  <!-- Success Popup -->
-  <div class="popup-overlay" id="success-popup">
-    <div class="popup-content">
-      <div class="popup-icon">✓</div>
-      <div class="popup-title">অর্ডার সফল!</div>
-      <div class="popup-message">
-        আপনার অর্ডারটি সফল হয়েছে — কিছু সময়ের মধ্যে আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবে। ধন্যবাদ!
-      </div>
-      <button class="popup-close" onclick="closePopup()">ঠিক আছে</button>
-    </div>
-  </div>
+<!-- Success Popup -->
+<div class="popup-overlay" id="success-popup">
+<div class="popup-content">
+<div class="popup-icon">✓</div>
+<div class="popup-title">অর্ডার সফল!</div>
+<div class="popup-message">
+আপনার অর্ডারটি সফল হয়েছে — কিছু সময়ের মধ্যে আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবে। ধন্যবাদ!
+</div>
+<button class="popup-close" onclick="closePopup()">ঠিক আছে</button>
+</div>
+</div>
 
 <script>
-  // read query params
-  const params = new URLSearchParams(window.location.search);
-  const prodName = params.get('name') || 'প্রোডাক্ট';
-  const prodPrice = params.get('price') || '0';
-  const prodImg = params.get('img') || '';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxgcaC5xN8MaJMpR5f-XAXuFnEWM5oCsag8iQsFYWKw4sj31q9TxOxXQ1m6mVwYOms/exec';
 
-  document.getElementById('prod-name').textContent = prodName;
-  document.getElementById('prod-price').textContent = '৳ ' + prodPrice;
-  if(prodImg) document.getElementById('prod-img').src = prodImg;
+// Read query params
+const params = new URLSearchParams(window.location.search);
+const prodName = params.get('name') || 'প্রোডাক্ট';
+const prodPrice = params.get('price') || '0';
+const prodImg = params.get('img') || '';
+document.getElementById('prod-name').textContent = prodName;
+document.getElementById('prod-price').textContent = '৳ ' + prodPrice;
+if(prodImg) document.getElementById('prod-img').src = prodImg;
 
-  // Popup functions
-  function showPopup() {
-    document.getElementById('success-popup').style.display = 'flex';
-  }
+// Popup functions
+function showPopup(){document.getElementById('success-popup').style.display='flex';}
+function closePopup(){document.getElementById('success-popup').style.display='none';}
+document.getElementById('success-popup').addEventListener('click', function(e){if(e.target===this) closePopup();});
 
-  function closePopup() {
-    document.getElementById('success-popup').style.display = 'none';
-  }
+// Payment toggle
+const codRadio=document.getElementById('cod');
+const advRadio=document.getElementById('advance');
+const codForm=document.getElementById('cod-form');
+const advBox=document.getElementById('advance-box');
+function togglePayment(){if(codRadio.checked){codForm.style.display='block';advBox.style.display='none';}else{codForm.style.display='none';advBox.style.display='block';}}
+codRadio.addEventListener('change',togglePayment);
+advRadio.addEventListener('change',togglePayment);
 
-  // Close popup when clicking outside
-  document.getElementById('success-popup').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closePopup();
-    }
-  });
+// Telegram send function
+async function sendOrderToTelegram(data){
+  try{
+    await fetch(WEB_APP_URL,{
+      method:'POST',
+      body:JSON.stringify(data),
+      headers:{'Content-Type':'application/json'}
+    });
+  }catch(err){console.error('Telegram send failed',err);}
+}
 
-  // payment toggle
-  const codRadio = document.getElementById('cod');
-  const advRadio = document.getElementById('advance');
-  const codForm = document.getElementById('cod-form');
-  const advBox = document.getElementById('advance-box');
+// COD confirm
+document.getElementById('confirm-cod').addEventListener('click', async function(){
+  const name=document.getElementById('cust-name').value.trim();
+  const phone=document.getElementById('cust-phone').value.trim();
+  const addr=document.getElementById('cust-address').value.trim();
+  if(!name||!phone||!addr){alert('অনুগ্রহ করে নাম, ফোন এবং ঠিকানা পূরণ করুন।');return;}
+  await sendOrderToTelegram({product:prodName,price:prodPrice,name:name,phone:phone,address:addr,method:'Cash on Delivery'});
+  showPopup();
+  document.getElementById('confirm-cod').disabled=true;
+});
 
-  function togglePayment(){
-    if(codRadio.checked){ codForm.style.display='block'; advBox.style.display='none'; }
-    else { codForm.style.display='none'; advBox.style.display='block'; }
-  }
-  codRadio.addEventListener('change', togglePayment);
-  advRadio.addEventListener('change', togglePayment);
+// Advance payment copy
+document.getElementById('copy-btn').addEventListener('click',async function(){
+  const txt=document.getElementById('bkash-number').textContent.trim();
+  if(navigator.clipboard&&navigator.clipboard.writeText){try{await navigator.clipboard.writeText(txt);alert('নম্বার কপি হয়েছে: '+txt);}catch(e){alert('কপি ব্যর্থ');}}
+  else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');alert('নম্বার কপি হয়েছে: '+txt);}catch(e){alert('কপি ব্যর্থ');}ta.remove();}
+});
 
-  // COD confirm
-  document.getElementById('confirm-cod').addEventListener('click', function(){
-    const name = document.getElementById('cust-name').value.trim();
-    const phone = document.getElementById('cust-phone').value.trim();
-    const addr = document.getElementById('cust-address').value.trim();
-    if(!name || !phone || !addr){
-      alert('অনুগ্রহ করে নাম, ফোন এবং ঠিকানা পূরণ করুন।');
-      return;
-    }
-    // Show popup instead of inline message
-    showPopup();
-    document.getElementById('confirm-cod').disabled = true;
-  });
+// Advance confirm
+document.getElementById('advance-confirm').addEventListener('click', async function(){
+  await sendOrderToTelegram({product:prodName,price:prodPrice,name:'Advance Payment',phone:'-',address:'-',method:'Advance Payment'});
+  showPopup();
+  document.getElementById('advance-confirm').disabled=true;
+});
 
-  // Advance payment copy
-  const copyBtn = document.getElementById('copy-btn');
-  const bkashNumEl = document.getElementById('bkash-number');
-  copyBtn.addEventListener('click', async function(){
-    const txt = bkashNumEl.textContent.trim();
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      try{
-        await navigator.clipboard.writeText(txt);
-        alert('নম্বার কপি হয়েছে: ' + txt);
-      }catch(e){
-        alert('কপি করতে সমস্যা হয়েছে। নম্বর ম্যানুয়ালি কপি করুন: ' + txt);
-      }
-    } else {
-      // fallback
-      const ta = document.createElement('textarea');
-      ta.value = txt; document.body.appendChild(ta); ta.select();
-      try{ document.execCommand('copy'); alert('নম্বার কপি হয়েছে: ' + txt); }catch(e){ alert('কপি ব্যর্থ'); }
-      ta.remove();
-    }
-  });
-
-  // Advance confirm
-  document.getElementById('advance-confirm').addEventListener('click', function(){
-    // Show popup for advance payment too
-    showPopup();
-    document.getElementById('advance-confirm').disabled = true;
-  });
-
-  function goBack(){
-    window.open('index.html','_self');
-  }
-
-  // set initial UI state
-  togglePayment();
+function goBack(){window.open('index.html','_self');}
+togglePayment();
 </script>
 </body>
 </html>
