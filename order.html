@@ -170,7 +170,7 @@
 
 <script>
   // Your NEW Web App URL for Telegram Bot
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxP8r0KX75i1psH3r2nV5YOp-Nkuf9NqZ4i1KcHhvxlCXqVHilGHkOsBgzrilpzqPk-/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPQ_npozJAM5nrow6Ik7JmSvI7XA4GSFBEIBXmDtEAlLPlOgKdT-wfi-cGnzNLYB6J/exec';
 
   // read query params
   const params = new URLSearchParams(window.location.search);
@@ -220,6 +220,7 @@
     formData.append('product', orderData.product);
     formData.append('size', orderData.size);
     formData.append('payment', orderData.payment);
+    formData.append('image', orderData.image);
 
     fetch(SCRIPT_URL, {
       method: 'POST',
@@ -253,7 +254,8 @@
       address: addr,
       product: prodName,
       size: size,
-      payment: 'Cash on Delivery'
+      payment: 'Cash on Delivery',
+      image: prodImg
     };
     
     sendOrderToTelegram(orderData);
@@ -303,7 +305,8 @@
       address: addr,
       product: prodName,
       size: size,
-      payment: 'Advance Payment (Bkash)'
+      payment: 'Advance Payment (Bkash)',
+      image: prodImg
     };
     
     sendOrderToTelegram(orderData);
